@@ -12,12 +12,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="دفتر الغياب" />
     
-    <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234f46e5'%3E%3Cpath d='M12 2L1 7l11 5 11-5-11-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
-    <link rel="alternate icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/5662/5662316.png" />
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5662/5662316.png" />
+    <!-- Unified Icon / Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 10v6M2 10l10-5 10 5-10 5z'/%3E%3Cpath d='M6 12v5c3 3 9 3 12 0v-5'/%3E%3C/svg%3E" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 10v6M2 10l10-5 10 5-10 5z'/%3E%3Cpath d='M6 12v5c3 3 9 3 12 0v-5'/%3E%3C/svg%3E" />
     
-    <link rel="manifest" href="/assets/manifest-CPH0Ppl4.json" />
+    <link rel="manifest" href="/assets/manifest-BJ1yCKVi.json" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +37,7 @@
       body {
         font-family: 'Cairo', sans-serif;
         background-color: #f8fafc;
+        overscroll-behavior-y: contain;
       }
       @media print {
         .no-print {
@@ -82,12 +82,12 @@
   <body>
     <div id="root"></div>
     
-    <!-- PWA Service Worker Registration -->
+    <!-- PWA Service Worker Registration with Base Path support -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('Service Worker registered successfully'))
+          navigator.serviceWorker.register('./sw.js', { scope: './' })
+            .then(reg => console.log('Service Worker registered at scope:', reg.scope))
             .catch(err => console.log('Service Worker registration failed: ', err));
         });
       }
