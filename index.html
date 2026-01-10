@@ -4,7 +4,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>دفتر الغياب</title>
+    <title>دفتر الغياب الذكي</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="دفتر الغياب" />
+    <link rel="manifest" href="/assets/manifest-NFG2-Vfq.json" />
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
@@ -67,5 +76,16 @@
 </head>
   <body>
     <div id="root"></div>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker registered successfully'))
+            .catch(err => console.log('Service Worker registration failed: ', err));
+        });
+      }
+    </script>
 </body>
 </html>
